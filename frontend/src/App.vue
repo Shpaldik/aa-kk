@@ -9,6 +9,10 @@
     <div class="table">
       <Table/>
     </div>
+    <div class="footer">
+      <Footer/>
+    </div>
+
   </section>
 </template>
 
@@ -16,6 +20,7 @@
 import Header from './components/Header.vue';
 import Charts from './components/Charts.vue';
 import Table from './components/Table.vue';
+import Footer from './components/Footer.vue';
 
 
 </script>
@@ -27,5 +32,9 @@ import Table from './components/Table.vue';
 
 .table {
   margin-top: 70px;
+}
+
+.footer{
+  margin-top: 30px;
 }
 </style>
