@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->string('operator');
             $table->string('client_number');
             $table->date('date');
-            $table->string('duration'); // Добавили duration
+            $table->num('duration'); 
             $table->string('scenario')->nullable();
             $table->string('marker')->nullable();
             $table->integer('rating');
@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('loyalty');
             $table->string('beacon')->nullable();
             $table->string('interruptions')->nullable();
-            $table->string('price');
+            $table->number('price');
             $table->timestamps();
         });
     }
