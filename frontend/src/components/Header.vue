@@ -35,25 +35,9 @@
     </nav>
 
     <div class="user-controls">
-      <ToggleSwitch v-model="checked" class="custom-toggle">
-      <template #handle="{ checked }">
-        <i
-          :class="['!text-xs pi', { 'pi-moon': checked, 'pi-sun': !checked }]"
-          class="toggle-icon"
-          :style="{
-            display: 'inline-block', 
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: checked ? '#492982' : 'transparent',
-            borderRadius: '50%',
-            justifyContent: 'center',
-            transition: '0.3s',
-            color: checked ? 'white' : '#492982'
-          }"
-        />
-      </template>
-    </ToggleSwitch>
+      <button class="theme-toggle-btn" @click="toggleTheme">
+        <i :class="['pi', isDark ? 'pi-moon' : 'pi-sun']"></i>
+      </button>
 
 
       <img class="icon" src="/icons/notification.svg" alt="notification">
@@ -68,11 +52,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import ToggleSwitch from 'primevue/toggleswitch';
+import { ref, onMounted } from 'vue';
 
+const isDark = ref(false)
 
-const isMenuOpen = ref(false);
+onMounted(() => {
+  isDark.value = localStorage.getItem('theme') === 'dark'
+  applyTheme()
+})
+
+function toggleTheme() {
+  isDark.value = !isDark.value
+  localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+  applyTheme()
+}
+
+function applyTheme() {
+  const html = document.documentElement
+  if (isDark.value) {
+    html.classList.add('dark')
+  } else {
+    html.classList.remove('dark')
+  }
+}
+
 </script>
 
 <style scoped>
@@ -167,13 +170,31 @@ header {
 }
 
 
-:deep(.p-toggleswitch-slider) {
-  background-color: #f1ecfc !important; 
-  transition: background-color 0.3s;  /* не это */
-}
-
 .toggle-icon {
   transition: 0.3s;
+}
+
+
+.theme-toggle-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 12px;
+  background-color: transparent;
+  border: 1px solid #492982;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+
+}
+
+.theme-toggle-btn:hover {
+  border-color: #492982;
+}
+
+.theme-toggle-btn i {
+  font-size: 1.2rem;
 }
 
 
@@ -206,4 +227,5 @@ header {
     gap: 12px;
   }
 }
+
 </style>

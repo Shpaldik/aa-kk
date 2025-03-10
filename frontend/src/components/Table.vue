@@ -162,7 +162,6 @@ const selectedCustomers = ref([]);
   left: 0;
 }
 
-/* Меню для filter */
 .menu-filter {
   bottom: -100px;
   right: 0;
@@ -182,4 +181,64 @@ const selectedCustomers = ref([]);
 .menu li:hover {
   background: #f0f0f0;
 }
+
+::v-deep(.p-paginator-page),
+::v-deep(.p-paginator-first),
+::v-deep(.p-paginator-prev),
+::v-deep(.p-paginator-next),
+::v-deep(.p-paginator-last) {
+  background-color: 492982;
+  border: 1px solid #d1d5db; /* light gray */
+  color: #6b7280; /* soft gray-blue */
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+::v-deep(.p-paginator-page:hover),
+::v-deep(.p-paginator-first:hover),
+::v-deep(.p-paginator-prev:hover),
+::v-deep(.p-paginator-next:hover),
+::v-deep(.p-paginator-last:hover) {
+  background-color: #492982;
+  border-color: #cbd5e1;
+  color: #374151;
+}
+
+/* Активная страница */
+::v-deep(.p-paginator-page.p-paginator-page-selected) {
+  background-color: #492982 !important;
+  color: #fff !important;
+  border-color: #492982 !important;
+  box-shadow: none !important;
+}
+
+::v-deep(.p-select:not(.p-disabled).p-focus:hover){
+  border-color: #492982 !important;
+}
+
+::v-deep(.p-select-option.p-select-option-selected){
+  background-color: #492982 !important;
+}
+
+::v-deep(.p-select:not(.p-disabled).p-focus){
+  border-color: #492982 !important;
+}
+
+::v-deep([data-v-83c58b0d] .p-datatable-column-sorted){
+  background-color: none !important;
+  color: #000 !important;
+}
+
+::v-deep(.p-datatable-column-sorted){
+  background: none;
+  color: none;
+}
+
+::v-deep(.p-datatable-column-sorted .p-datatable-sort-icon){
+  color: #000 var(--p-datatable-header-cell-selected-color)
+}
+
 </style>
